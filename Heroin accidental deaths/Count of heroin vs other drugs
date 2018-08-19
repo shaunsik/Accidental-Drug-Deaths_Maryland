@@ -1,0 +1,15 @@
+--Combine data from different different tables with inner, outer and full Joins
+-- Using the immediate cause a from above. I was able to determine the count of the immediate causes for heroin
+-- vs any opiod
+WITH immediate_cause AS(
+    SELECT sex,immediatecausea, COUNT(immediatecausea) 
+    FROM da_drugsstop.drugdeaths
+    GROUP BY sex,immediatecausea
+    HAVING COUNT(immediatecausea) > 20
+    ORDER BY COUNT(immediatecausea) DESC
+)
+SELECT drugdeaths.sex,heroin,any_opioid,COUNT(immediate_cause.immediatecausea) 
+FROM da_drugsstop.drugdeaths 
+FULL JOIN immediate_cause ON drugdeaths.sex = immediate_cause.sex
+GROUP BY drugdeaths.sex, heroin, any_opioid
+LIMIT 1000

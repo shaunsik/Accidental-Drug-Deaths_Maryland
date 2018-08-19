@@ -1,0 +1,13 @@
+--Combine data with UNION and UNION all
+-- Percentage of drug overdoses that occur in their own cities. 
+--Can cite environemental reasons for tolerance failures.
+WITH matching_city AS(
+    SELECT residence_city, death_city
+    FROM da_drugsstop.drugdeaths
+    WHERE
+    residence_city = death_city
+)
+SELECT COUNT(matching_city) FROM matching_city
+UNION ALL
+SELECT COUNT(residence_city) FROM da_drugsstop.drugdeaths 
+

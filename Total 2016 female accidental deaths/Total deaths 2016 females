@@ -1,0 +1,7 @@
+
+--Retrieve data that meets your conditions by using Where 
+--This query retrieves the number of deaths on the year 2016 - 2017 for females in Conneticut
+SELECT COUNT(casenumber) FROM da_drugsstop.drugdeaths 
+WHERE date_mdy > '2016-01-01' AND date_mdy <= '2017-01-01'
+AND sex = 'Female'
+LIMIT 1000

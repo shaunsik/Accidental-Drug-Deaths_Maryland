@@ -1,0 +1,10 @@
+--Select data, including aggregates and using CASE statements, from a database
+-- This question finds out the cocaine death ratio for all races versus non-cocaine deaths
+SELECT race,COUNT(sex), cocaine,
+CASE 
+    WHEN cocaine = 'Y' OR 'y' THEN 'cocaine death'
+    WHEN cocaine = 'null' THEN 'Other death'
+    END
+FROM da_drugsstop.drugdeaths
+GROUP BY race, cocaine
+LIMIT 1000

@@ -1,0 +1,20 @@
+-- WITH AS statement practice including worse cities and counts of all drugs in comparison with Heroine 
+-- being the worse
+WITH drug_counts AS(
+    SELECT COUNT(cocaine) AS cocaine_count,COUNT(fentanyl) AS fen_count,COUNT(oxycodone) AS oxydcodone_count,
+    COUNT(oxymorphone) AS oxymorphone_count,COUNT(etoh) AS etoh_count,
+    COUNT(heroin) AS heroine_count,
+    COUNT(hydrocodone) AS hydrocodone_count,COUNT(benzodiazepine) AS benzodiazepine_count
+    , COUNT(methadone) AS methadone_count, COUNT(amphet) AS amphet_count, COUNT(tramad) AS tramad_count,
+    COUNT(morphine) AS morphine_count,COUNT(other) AS other,COUNT(any_opioid) AS opiod_count
+    FROM da_drugsstop.drugdeaths 
+)
+SELECT race, death_city, COUNT(death_city),cocaine_count,fen_count,oxydcodone_count,oxymorphone_count,
+etoh_count,heroine_count,hydrocodone_count,benzodiazepine_count, methadone_count, amphet_count,tramad_count,
+morphine_count,drug_counts.other,opiod_count
+FROM da_drugsstop.drugdeaths, drug_counts
+GROUP by race,death_city,cocaine_count,fen_count,oxydcodone_count,oxymorphone_count,
+etoh_count,heroine_count,hydrocodone_count,benzodiazepine_count, methadone_count, amphet_count,tramad_count,
+morphine_count,drug_counts.other,opiod_count
+ORDER BY COUNT(death_city) DESC
+LIMIT 5000
