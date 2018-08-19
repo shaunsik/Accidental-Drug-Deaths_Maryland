@@ -1,0 +1,16 @@
+BEGIN;
+CREATE SCHEMA IF NOT EXISTS da_drugsstop;
+CREATE TABLE IF NOT EXISTS da_drugsstop.drugdeaths
+(CaseNumber VARCHAR(1000),date_mdy DATE,sex VARCHAR(1000),race VARCHAR(1000),Age INT,Residence_City VARCHAR(1000),
+ Residence_State VARCHAR(1000), Residence_County VARCHAR(1000),Death_City VARCHAR(1000),Death_State VARCHAR(1000),
+ Death_County VARCHAR(1000),location VARCHAR (1000),DescriptionofInjury VARCHAR(1000),InjuryPlace VARCHAR (1000),
+ ImmediateCauseA TEXT,Heroin VARCHAR(200), Cocaine VARCHAR(200), Fentanyl VARCHAR(200), Oxycodone VARCHAR(200), 
+ Oxymorphone VARCHAR(200), EtOH VARCHAR(200),Hydrocodone VARCHAR(200), Benzodiazepine VARCHAR(200), 
+ Methadone VARCHAR(200), Amphet VARCHAR(200),Tramad VARCHAR(200), Morphine VARCHAR(200), Other VARCHAR(200),
+ Any_Opioid VARCHAR(200),MannerofDeath VARCHAR(1000),AmendedMannerofDeath VARCHAR(1000), DeathLoc VARCHAR(1000) 
+ );  
+DELETE FROM da_drugsstop.drugdeaths;
+COMMIT; 
+
+COPY da_drugsstop.drugdeaths FROM '/tmp/Accidental_Drug_Related_Deaths__2012-2017 (1).csv'
+WITH DELIMITER ',' CSV HEADER;
