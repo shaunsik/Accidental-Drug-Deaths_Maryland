@@ -18,6 +18,5 @@ This is a project I started in order to showcase my SQL skills being used in dat
 
 
 
-
-My findings on these numbers were pretty interesting. And we really went to show my how powerful SQL could be as a tool to filter
-and extract data. I am pleased with my findings from this single dataset. 
+## My findings on these numbers were pretty interesting. And we really went to show my how powerful SQL could be as a tool to filter
+## and extract data. I am pleased with my findings from this single dataset. 
